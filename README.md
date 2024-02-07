@@ -53,3 +53,54 @@ Following best practice security, the company has decided to implement an IAM so
     3. Day and time
 
 Our job is to propose an IAM solution that covers the above requirements, and then deliver a working proof-of-concept (PoC) of the proposal that demonstrates how the core requirements have been met.
+
+## Problem Analysis and Recommendations
+
+### Sign-On
+
+Because the company employees must access a number of distinct applications in their daily duties, a centralised sign-on system is required. Maintaining a user's session across various applications will increase productivity and lower friction when switching between applications.
+
+#### Sign-on recommendations
+
+Adopt the OpenID Connect and OAuth2 standards, which support a variety of sign-on and access control scenarios.
+
+This recommentation can be satisifed by any one of a growing number of on-premise or hosted Identity Provider (IdP) SaaS offerings, and is well-supported for all types of applications that PizzaMea will use or develop.
+
+In this case, we recommend [KeyCloak](https://www.keycloak.org/) as the IdP.
+
+### Zero Trust Principles
+
+Ensuring that everything in the company's private and public networks requires an authenticated user/service is a non-negotiable requirement.
+
+We can broadly partition access control decisions into two types:
+
+1. High-level access controls
+    1. These can be checked at the time of application sign-in
+    2. Typically these assignments mutate infrequently, often being assigned during commencement of employment or a new role, and being revoked upon employment or role cessation
+    2. Typically involves inspecting a user's group membership to ensure the application has been assigned to the user/service during sign-in/redirection to the application
+2. Low-level access controls
+    1. These are dynamic assignments that can change during the course of a user's signed-in session
+    2. They are typically application-specific and have meaning in the context of what a user is able to do inside the specific application
+    3. They are suitable for modelling just-in-time authorisation and resource access relationships
+    4. They can be removed/adjusted while the user is signed in, without requiring the user to re-authenticate, and thus are a good option for immediately revoking access rights when responding to a breach incident or adjusting a user's real-time access level
+
+#### Zero Trust reccommentations
+
+Use group modelling and group membership in the chosen IdP to control assignment of applications to users.
+
+Use OAuth2 scopes for high-level access control to have coarse-grain access control decisions encoded in access tokens.
+
+Develop a system of OAuth2 scopes that model typical roles assigned to users and how these relate to high-level application access.
+
+Offload access check logic from applications and instead utilise low-latency remote checks by calling into a centralised FGA system at key points in each application.
+
+Use [OpenFGA](https://openfga.dev/) to model low-level access controls and achieve dynamic just-in-time authorisation checks. 
+
+
+### Partitioned Access Control
+
+Being able to encode logic into access control checks will require an FGA system that is capable of representing contextual, rule-based access controls.
+
+#### Partitioned Access Control reccommentations
+
+Use [OpenFGA](https://openfga.dev/docs/modeling/contextual-time-based-authorization) to model low-level, contextual access control checks.
