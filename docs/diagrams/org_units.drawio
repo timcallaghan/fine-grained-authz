@@ -1,0 +1,52 @@
+<mxfile host="Electron" modified="2024-02-06T23:35:33.720Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/23.0.2 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="U7XplXPOh7dj6B3nOV6F" version="23.0.2" type="device">
+  <diagram name="Page-1" id="0a0DkXZq9yBFE4XhhjUP">
+    <mxGraphModel dx="1306" dy="894" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="aVSDV5O-qo9ptVRQmxkw-1" value="PizzaMea Organisation" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;fontSize=18;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="160" y="40" width="850" height="450" as="geometry" />
+        </mxCell>
+        <mxCell id="aVSDV5O-qo9ptVRQmxkw-7" value="" style="group" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="400" y="100" width="370" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="aVSDV5O-qo9ptVRQmxkw-22" value="" style="group" vertex="1" connectable="0" parent="aVSDV5O-qo9ptVRQmxkw-7">
+          <mxGeometry width="370" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="aVSDV5O-qo9ptVRQmxkw-2" value="Org Unit&lt;br&gt;&lt;br&gt;Corporate Head Office" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;verticalAlign=top;" vertex="1" parent="aVSDV5O-qo9ptVRQmxkw-22">
+          <mxGeometry width="370" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="aVSDV5O-qo9ptVRQmxkw-3" value="" style="shape=actor;whiteSpace=wrap;html=1;" vertex="1" parent="aVSDV5O-qo9ptVRQmxkw-22">
+          <mxGeometry x="105" y="70" width="40" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="aVSDV5O-qo9ptVRQmxkw-4" value="" style="shape=actor;whiteSpace=wrap;html=1;" vertex="1" parent="aVSDV5O-qo9ptVRQmxkw-22">
+          <mxGeometry x="225" y="70" width="40" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="aVSDV5O-qo9ptVRQmxkw-20" value="" style="group" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="182" y="300" width="370" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="aVSDV5O-qo9ptVRQmxkw-13" value="Org Unit&lt;br&gt;&lt;br&gt;Brisbane Store" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;verticalAlign=top;" vertex="1" parent="aVSDV5O-qo9ptVRQmxkw-20">
+          <mxGeometry width="370" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="aVSDV5O-qo9ptVRQmxkw-14" value="" style="shape=actor;whiteSpace=wrap;html=1;" vertex="1" parent="aVSDV5O-qo9ptVRQmxkw-20">
+          <mxGeometry x="105" y="70" width="40" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="aVSDV5O-qo9ptVRQmxkw-15" value="" style="shape=actor;whiteSpace=wrap;html=1;" vertex="1" parent="aVSDV5O-qo9ptVRQmxkw-20">
+          <mxGeometry x="225" y="70" width="40" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="aVSDV5O-qo9ptVRQmxkw-21" value="" style="group" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="617" y="300" width="370" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="aVSDV5O-qo9ptVRQmxkw-17" value="Org Unit&lt;br&gt;&lt;br&gt;Sydney Store" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;verticalAlign=top;" vertex="1" parent="aVSDV5O-qo9ptVRQmxkw-21">
+          <mxGeometry width="370" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="aVSDV5O-qo9ptVRQmxkw-18" value="" style="shape=actor;whiteSpace=wrap;html=1;" vertex="1" parent="aVSDV5O-qo9ptVRQmxkw-21">
+          <mxGeometry x="105" y="70" width="40" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="aVSDV5O-qo9ptVRQmxkw-19" value="" style="shape=actor;whiteSpace=wrap;html=1;" vertex="1" parent="aVSDV5O-qo9ptVRQmxkw-21">
+          <mxGeometry x="225" y="70" width="40" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
