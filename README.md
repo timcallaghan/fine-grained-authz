@@ -66,7 +66,7 @@ Adopt the OpenID Connect and OAuth2 standards, which support a variety of sign-o
 
 This recommentation can be satisifed by any one of a growing number of on-premise or hosted Identity Provider (IdP) SaaS offerings, and is well-supported for all types of applications that PizzaMea will use or develop.
 
-In this case, we recommend [KeyCloak](https://www.keycloak.org/) as the IdP.
+In this case, we recommend [KeyCloak](https://www.keycloak.org/) as the IdP (primarily for ease of demonstration and running locally).
 
 ### Zero Trust Principles
 

@@ -1,0 +1,133 @@
+version: '3.8'
+name: 'fga-infra'
+
+volumes:
+  seq:
+  postgres:
+
+networks:
+  default:
+    name: fga-infra-network
+
+services:
+  seq:
+    image: datalust/seq:2024.1
+    container_name: seq
+    volumes:
+      - seq:/data
+    environment:
+      ACCEPT_EULA: "Y"
+      SEQ_FIRSTRUN_ADMINPASSWORDHASH: ${PH}
+    ports:
+      - 5341:5341
+      - 5080:80
+    
+  postgres:
+    image: postgres:14.10
+    container_name: postgres
+    volumes:
+      - postgres:/data/postgres
+      - ./docker-compose/postgres/init-database.sh:/docker-entrypoint-initdb.d/init-database.sh
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-password}
+      PGDATA: /data/postgres
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  pgadmin:
+    image: dpage/pgadmin4:8.2
+    container_name: pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${pgadmin_default_email:-pgadmin4@pgadmin.org}
+      PGADMIN_DEFAULT_PASSWORD: ${pgadmin_default_password:-admin}
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+      PGADMIN_CONFIG_MASTER_PASSWORD_REQUIRED: 'False'
+    ports:
+      - "${pgadmin_port:-5050}:80"
+    volumes:
+      - ./docker-compose/pgadmin/pgadmin_servers.json:/pgadmin4/servers.json
+      - ./docker-compose/pgadmin/pgpass:/pgpass
+    depends_on:
+      - postgres
+    entrypoint: >
+      /bin/sh -c "
+      cp /pgpass /var/lib/pgadmin/pgpass;
+      chmod 600 /var/lib/pgadmin/pgpass;
+      /entrypoint.sh
+      "
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:23.0.6
+    container_name: keycloak
+    command:
+      - start-dev
+    environment:
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: password
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: password
+      KC_DB: postgres
+      KC_DB_URL_HOST: postgres
+      KC_DB_URL_DATABASE: keycloak
+      KC_DB_SCHEMA: public
+      KC_DB_USERNAME: keycloak
+      KC_DB_PASSWORD: password
+      KC_HTTP_ENABLED: 'true'
+      KC_HTTP_PORT: 8080
+      KC_HOSTNAME_STRICT: 'false'
+      KC_HEALTH_ENABLED: 'true'
+      KC_HOSTNAME_ADMIN: localhost
+      KC_HOSTNAME: keycloak
+      KC_FEATURES: declarative-user-profile
+      KC_LOG_LEVEL: INFO
+    healthcheck:
+      # test: ["CMD", "curl", "-f", "http://localhost:8081/health/ready"]
+      # See: https://gist.github.com/sarath-soman/5d9aec06953bbd0990c648605d4dba07
+      test: ['CMD-SHELL', '[ -f /tmp/HealthCheck.java ] || echo "public class HealthCheck { public static void main(String[] args) throws java.lang.Throwable { System.exit(java.net.HttpURLConnection.HTTP_OK == ((java.net.HttpURLConnection)new java.net.URL(args[0]).openConnection()).getResponseCode() ? 0 : 1); } }" > /tmp/HealthCheck.java && java /tmp/HealthCheck.java http://localhost:8080/health/live']
+      interval: 5s
+      timeout: 2s
+      retries: 15         
+    ports:
+      - 5010:8080
+    volumes:
+      - ./docker-compose/keycloak/init.sh:/opt/keycloak/init.sh
+    depends_on:
+      - postgres
+
+  migrate:
+    depends_on:
+      postgres:
+        condition: service_healthy
+    image: openfga/openfga:v1.4.3
+    container_name: openfga-migrate
+    command: migrate
+    environment:
+      - OPENFGA_DATASTORE_ENGINE=postgres
+      - OPENFGA_DATASTORE_URI=postgres://openfga:password@postgres:5432/openfga?sslmode=disable
+      - OPENFGA_TRACE_OTLP_ENDPOINT=seq:5341
+
+  openfga:
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+    image: openfga/openfga:v1.4.3
+    container_name: openfga
+    environment:
+      - OPENFGA_DATASTORE_ENGINE=postgres
+      - OPENFGA_DATASTORE_URI=postgres://openfga:password@postgres:5432/openfga?sslmode=disable
+      - OPENFGA_LOG_FORMAT=json
+      - OPENFGA_TRACE_OTLP_ENDPOINT=seq:5341
+    command: run
+    ports:
+      # Needed for the http server
+      - "8082:8080"
+      # Needed for the grpc server (if used)
+      - "8081:8081"
+      # Needed for the playground (Do not enable in prod!)
+      - "5081:3000"
