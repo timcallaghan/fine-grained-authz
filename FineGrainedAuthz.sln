@@ -1,0 +1,66 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# 
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".solution-items", ".solution-items", "{56AE153E-D5D6-44EB-946E-DDC7B43013EF}"
+	ProjectSection(SolutionItems) = preProject
+		create-world.sh = create-world.sh
+		destroy-world.sh = destroy-world.sh
+		docker-compose-infra.yml = docker-compose-infra.yml
+		LICENSE = LICENSE
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{FD890429-03DF-4747-8875-C2A15A0335FC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PoSApi", "src\PoSApi\PoSApi.csproj", "{B713C28F-9CDC-4BE9-9E65-11F1E25E3B72}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockManagerApi", "src\StockManagerApi\StockManagerApi.csproj", "{9562765E-0F0A-4F8A-B99C-19419FE262D5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportsApi", "src\ReportsApi\ReportsApi.csproj", "{4D0FC7A4-2506-4BF5-B18B-06747EEF8301}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountingApi", "src\AccountingApi\AccountingApi.csproj", "{FADF5324-6C46-42C0-A766-700240E43DC5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SecOpsApi", "src\SecOpsApi\SecOpsApi.csproj", "{6C559769-2206-4E57-A86B-180389EB04C5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StrategyManagerApi", "src\StrategyManagerApi\StrategyManagerApi.csproj", "{E096BC54-87C2-4400-A079-E73D307AF041}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B713C28F-9CDC-4BE9-9E65-11F1E25E3B72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B713C28F-9CDC-4BE9-9E65-11F1E25E3B72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B713C28F-9CDC-4BE9-9E65-11F1E25E3B72}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B713C28F-9CDC-4BE9-9E65-11F1E25E3B72}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9562765E-0F0A-4F8A-B99C-19419FE262D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9562765E-0F0A-4F8A-B99C-19419FE262D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9562765E-0F0A-4F8A-B99C-19419FE262D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9562765E-0F0A-4F8A-B99C-19419FE262D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D0FC7A4-2506-4BF5-B18B-06747EEF8301}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D0FC7A4-2506-4BF5-B18B-06747EEF8301}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D0FC7A4-2506-4BF5-B18B-06747EEF8301}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D0FC7A4-2506-4BF5-B18B-06747EEF8301}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FADF5324-6C46-42C0-A766-700240E43DC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FADF5324-6C46-42C0-A766-700240E43DC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FADF5324-6C46-42C0-A766-700240E43DC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FADF5324-6C46-42C0-A766-700240E43DC5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C559769-2206-4E57-A86B-180389EB04C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C559769-2206-4E57-A86B-180389EB04C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C559769-2206-4E57-A86B-180389EB04C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C559769-2206-4E57-A86B-180389EB04C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E096BC54-87C2-4400-A079-E73D307AF041}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E096BC54-87C2-4400-A079-E73D307AF041}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E096BC54-87C2-4400-A079-E73D307AF041}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E096BC54-87C2-4400-A079-E73D307AF041}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B713C28F-9CDC-4BE9-9E65-11F1E25E3B72} = {FD890429-03DF-4747-8875-C2A15A0335FC}
+		{9562765E-0F0A-4F8A-B99C-19419FE262D5} = {FD890429-03DF-4747-8875-C2A15A0335FC}
+		{4D0FC7A4-2506-4BF5-B18B-06747EEF8301} = {FD890429-03DF-4747-8875-C2A15A0335FC}
+		{FADF5324-6C46-42C0-A766-700240E43DC5} = {FD890429-03DF-4747-8875-C2A15A0335FC}
+		{6C559769-2206-4E57-A86B-180389EB04C5} = {FD890429-03DF-4747-8875-C2A15A0335FC}
+		{E096BC54-87C2-4400-A079-E73D307AF041} = {FD890429-03DF-4747-8875-C2A15A0335FC}
+	EndGlobalSection
+EndGlobal

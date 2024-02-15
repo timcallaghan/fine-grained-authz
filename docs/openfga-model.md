@@ -1,0 +1,2 @@
+# OpenFGA Authorisation Model
+

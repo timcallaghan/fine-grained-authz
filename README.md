@@ -39,6 +39,16 @@ The corporate entity houses the various c-suite roles typical of a company, as w
 
 The company has a significant investment in technology and operates a combination of 3rd-party software and infrastructure, as well as a number of internal and publicly facing applications.
 
+| Application | Description/Purpose | High-level Access Restrictions |
+| ----------- | ------------| ------------------- |
+| POS | Over the counter orders and sales | Store manager <br/> Store POS operators |
+| Stock Manager | Stock item manager for all stores <br/> Store managers can order stock for their own store | Supply Manager <br/> Store manager |
+| Accounting Software | Manage accounting for entire business | CFO <br/> Accountants |
+| Reports | Business health and performance reporting | COO <br/> Corporate Stores Manager <br/> Store Managers |
+| Security and Auditing | Business-wide security <br/> Audting and access control enforement | CIO <br/> Systems Administrators |
+| Strategy Manager | Business-wide strategy and decision tools | CEO <br/> COO <br/> CIO <br/> CFO |
+
+
 Following best practice security, the company has decided to implement an IAM solution with the following properties:
 
 1. Single Sign-on for anyone that needs to interact with the company's systems and data
@@ -104,3 +114,13 @@ Being able to encode logic into access control checks will require an FGA system
 #### Partitioned Access Control reccommentations
 
 Use [OpenFGA](https://openfga.dev/docs/modeling/contextual-time-based-authorization) to model low-level, contextual access control checks.
+
+## Proof of Concept (PoC)
+
+In order to demonstrate the various IAM mechanisms, we'll need a number of things:
+
+1. Core Infrastructure - see [Infrastructure and Applications Setup](./docs/infrastructure_app_setup.md) for details
+2. KeyCloak configuration that models users, groups, applications, and OAuth2 scopes - see [KeyCloak Config](./docs/keycloak-config.md) for details
+3. APIs representing the various bespoke PizzaMea applications, configured to accept access tokens with appropriate OAuth2 scopes as required - see [API setup](./docs/apis.md) for details
+4. An appropriate OpenFGA authorization model that captures the fine-grained authorisation logic - see [OpenFGA Model](./docs/openfga-model.md) for details
+5. A way to test and validate the entire IAM stack
