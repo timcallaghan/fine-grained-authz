@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# 
+#
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".solution-items", ".solution-items", "{56AE153E-D5D6-44EB-946E-DDC7B43013EF}"
 	ProjectSection(SolutionItems) = preProject
 		create-world.sh = create-world.sh
@@ -8,6 +8,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".solution-items", ".solutio
 		docker-compose-infra.yml = docker-compose-infra.yml
 		LICENSE = LICENSE
 		README.md = README.md
+		docker-compose.yml = docker-compose.yml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{FD890429-03DF-4747-8875-C2A15A0335FC}"

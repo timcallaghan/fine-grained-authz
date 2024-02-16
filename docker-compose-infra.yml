@@ -80,6 +80,8 @@ services:
       KC_HTTP_ENABLED: 'true'
       KC_HTTP_PORT: 5010
       KC_HOSTNAME_STRICT: 'false'
+      KC_HOSTNAME: "localhost"
+      KC_HOSTNAME_STRICT_BACKCHANNEL: 'true'
       KC_HEALTH_ENABLED: 'true'
       KC_FEATURES: declarative-user-profile,admin-fine-grained-authz
       KC_LOG_LEVEL: INFO

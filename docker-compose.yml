@@ -1,0 +1,68 @@
+version: '3.8'
+name: 'fga-apps'
+
+networks:
+  default:
+    name: fga-infra-network
+    external: true
+
+services:
+  accountingapi:
+    image: accountingapi
+    build:
+      context: .
+      dockerfile: src/AccountingApi/Dockerfile
+    ports:
+      - 5001:8080
+    extra_hosts:
+      - "localhost:host-gateway"
+
+  posapi:
+    image: posapi
+    build:
+      context: .
+      dockerfile: src/PoSApi/Dockerfile
+    ports:
+      - 5002:8080
+    extra_hosts:
+      - "localhost:host-gateway"
+
+  reportsapi:
+    image: reportsapi
+    build:
+      context: .
+      dockerfile: src/ReportsApi/Dockerfile
+    ports:
+      - 5003:8080
+    extra_hosts:
+      - "localhost:host-gateway"
+
+  secopsapi:
+    image: secopsapi
+    build:
+      context: .
+      dockerfile: src/SecOpsApi/Dockerfile
+    ports:
+      - 5004:8080
+    extra_hosts:
+      - "localhost:host-gateway"
+
+  stockmanagerapi:
+    image: stockmanagerapi
+    build:
+      context: .
+      dockerfile: src/StockManagerApi/Dockerfile
+    ports:
+      - 5005:8080
+    extra_hosts:
+      - "localhost:host-gateway"
+
+  strategymanagerapi:
+    image: strategymanagerapi
+    build:
+      context: .
+      dockerfile: src/StrategyManagerApi/Dockerfile
+    ports:
+      - 5006:8080
+    extra_hosts:
+      - "localhost:host-gateway"

@@ -252,6 +252,13 @@
         "clientRole" : true,
         "containerId" : "9892d618-099a-49e0-a723-07a0fb445c53",
         "attributes" : { }
+      }, {
+        "id" : "f1e4c865-b4ec-4035-b8df-268c4a4328fa",
+        "name" : "uma_protection",
+        "composite" : false,
+        "clientRole" : true,
+        "containerId" : "9892d618-099a-49e0-a723-07a0fb445c53",
+        "attributes" : { }
       } ],
       "AccountingApi" : [ {
         "id" : "6fbf1774-35fc-4c2b-8b91-424b63ef5f77",
@@ -801,6 +808,23 @@
     "notBefore" : 0,
     "groups" : [ "/POS Operators" ]
   }, {
+    "id" : "577f953a-b92c-418c-beba-b01bd77062b4",
+    "createdTimestamp" : 1708050121210,
+    "username" : "service-account-realm-management",
+    "enabled" : true,
+    "totp" : false,
+    "emailVerified" : false,
+    "serviceAccountClientId" : "realm-management",
+    "credentials" : [ ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-pizzamea" ],
+    "clientRoles" : {
+      "realm-management" : [ "uma_protection" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ ]
+  }, {
     "id" : "93c40a19-254c-4216-bf8a-aa8a4895ca85",
     "createdTimestamp" : 1707870304147,
     "username" : "tessa.miller@pizza.mea",
@@ -908,14 +932,14 @@
     "clientId" : "AccountingApi",
     "name" : "AccountingApi",
     "description" : "PizzaMea accounting",
-    "rootUrl" : "http://localhost:5003",
+    "rootUrl" : "http://localhost:5001",
     "adminUrl" : "",
-    "baseUrl" : "http://localhost:5003/swagger",
+    "baseUrl" : "http://localhost:5001/swagger",
     "surrogateAuthRequired" : false,
     "enabled" : true,
     "alwaysDisplayInConsole" : false,
     "clientAuthenticatorType" : "client-secret",
-    "redirectUris" : [ "http://localhost:5003/swagger/oauth2-redirect.html" ],
+    "redirectUris" : [ "http://localhost:5001/swagger/oauth2-redirect.html" ],
     "webOrigins" : [ "+" ],
     "notBefore" : 0,
     "bearerOnly" : false,
@@ -928,7 +952,7 @@
     "frontchannelLogout" : true,
     "protocol" : "openid-connect",
     "attributes" : {
-      "post.logout.redirect.uris" : "http://localhost:5003/swagger/oauth2-logout.html",
+      "post.logout.redirect.uris" : "http://localhost:5001/swagger/oauth2-logout.html",
       "oauth2.device.authorization.grant.enabled" : "false",
       "backchannel.logout.revoke.offline.tokens" : "false",
       "use.refresh.tokens" : "true",
@@ -1009,14 +1033,14 @@
     "clientId" : "PoSApi",
     "name" : "PoSApi",
     "description" : "Point of Sales system for PizzaMea",
-    "rootUrl" : "http://localhost:5223",
+    "rootUrl" : "http://localhost:5002",
     "adminUrl" : "",
-    "baseUrl" : "http://localhost:5223/swagger/index.html",
+    "baseUrl" : "http://localhost:5002/swagger/index.html",
     "surrogateAuthRequired" : false,
     "enabled" : true,
     "alwaysDisplayInConsole" : false,
     "clientAuthenticatorType" : "client-secret",
-    "redirectUris" : [ "http://localhost:5223/swagger/oauth2-redirect.html" ],
+    "redirectUris" : [ "http://localhost:5002/swagger/oauth2-redirect.html" ],
     "webOrigins" : [ "+" ],
     "notBefore" : 0,
     "bearerOnly" : false,
@@ -1029,7 +1053,7 @@
     "frontchannelLogout" : true,
     "protocol" : "openid-connect",
     "attributes" : {
-      "post.logout.redirect.uris" : "http://localhost:5223/swagger/oauth2-logout.html",
+      "post.logout.redirect.uris" : "http://localhost:5002/swagger/oauth2-logout.html",
       "oauth2.device.authorization.grant.enabled" : "false",
       "backchannel.logout.revoke.offline.tokens" : "false",
       "use.refresh.tokens" : "true",
@@ -1060,12 +1084,12 @@
     "redirectUris" : [ ],
     "webOrigins" : [ ],
     "notBefore" : 0,
-    "bearerOnly" : true,
+    "bearerOnly" : false,
     "consentRequired" : false,
     "standardFlowEnabled" : true,
     "implicitFlowEnabled" : false,
     "directAccessGrantsEnabled" : false,
-    "serviceAccountsEnabled" : false,
+    "serviceAccountsEnabled" : true,
     "authorizationServicesEnabled" : true,
     "publicClient" : false,
     "frontchannelLogout" : false,
@@ -1076,6 +1100,49 @@
     "authenticationFlowBindingOverrides" : { },
     "fullScopeAllowed" : false,
     "nodeReRegistrationTimeout" : 0,
+    "protocolMappers" : [ {
+      "id" : "9bfa5bdb-1a0b-45a7-9f6e-6eddc3702c22",
+      "name" : "Client Host",
+      "protocol" : "openid-connect",
+      "protocolMapper" : "oidc-usersessionmodel-note-mapper",
+      "consentRequired" : false,
+      "config" : {
+        "user.session.note" : "clientHost",
+        "introspection.token.claim" : "true",
+        "id.token.claim" : "true",
+        "access.token.claim" : "true",
+        "claim.name" : "clientHost",
+        "jsonType.label" : "String"
+      }
+    }, {
+      "id" : "b7c9f2f9-fc6f-4d51-8789-35f7a92914c2",
+      "name" : "Client ID",
+      "protocol" : "openid-connect",
+      "protocolMapper" : "oidc-usersessionmodel-note-mapper",
+      "consentRequired" : false,
+      "config" : {
+        "user.session.note" : "client_id",
+        "introspection.token.claim" : "true",
+        "id.token.claim" : "true",
+        "access.token.claim" : "true",
+        "claim.name" : "client_id",
+        "jsonType.label" : "String"
+      }
+    }, {
+      "id" : "17e8767d-925b-4ef1-8530-5e4f136ba8c3",
+      "name" : "Client IP Address",
+      "protocol" : "openid-connect",
+      "protocolMapper" : "oidc-usersessionmodel-note-mapper",
+      "consentRequired" : false,
+      "config" : {
+        "user.session.note" : "clientAddress",
+        "introspection.token.claim" : "true",
+        "id.token.claim" : "true",
+        "access.token.claim" : "true",
+        "claim.name" : "clientAddress",
+        "jsonType.label" : "String"
+      }
+    } ],
     "defaultClientScopes" : [ "web-origins", "acr", "profile", "roles", "email" ],
     "optionalClientScopes" : [ "address", "phone", "offline_access", "microprofile-jwt" ],
     "authorizationSettings" : {
@@ -1112,14 +1179,14 @@
     "clientId" : "ReportsApi",
     "name" : "ReportsApi",
     "description" : "PizzaMea reporting",
-    "rootUrl" : "http://localhost:5209",
+    "rootUrl" : "http://localhost:5003",
     "adminUrl" : "",
-    "baseUrl" : "http://localhost:5209/swagger",
+    "baseUrl" : "http://localhost:5003/swagger",
     "surrogateAuthRequired" : false,
     "enabled" : true,
     "alwaysDisplayInConsole" : false,
     "clientAuthenticatorType" : "client-secret",
-    "redirectUris" : [ "http://localhost:5209/swagger/oauth2-redirect.html" ],
+    "redirectUris" : [ "http://localhost:5003/swagger/oauth2-redirect.html" ],
     "webOrigins" : [ "+" ],
     "notBefore" : 0,
     "bearerOnly" : false,
@@ -1132,7 +1199,7 @@
     "frontchannelLogout" : true,
     "protocol" : "openid-connect",
     "attributes" : {
-      "post.logout.redirect.uris" : "http://localhost:5209/swagger/oauth2-logout.html",
+      "post.logout.redirect.uris" : "http://localhost:5003/swagger/oauth2-logout.html",
       "oauth2.device.authorization.grant.enabled" : "false",
       "backchannel.logout.revoke.offline.tokens" : "false",
       "use.refresh.tokens" : "true",
@@ -1157,14 +1224,14 @@
     "clientId" : "SecOpsApi",
     "name" : "SecOpsApi",
     "description" : "Security Operations",
-    "rootUrl" : "http://localhost:5267",
+    "rootUrl" : "http://localhost:5004",
     "adminUrl" : "",
-    "baseUrl" : "http://localhost:5267/swagger",
+    "baseUrl" : "http://localhost:5004/swagger",
     "surrogateAuthRequired" : false,
     "enabled" : true,
     "alwaysDisplayInConsole" : false,
     "clientAuthenticatorType" : "client-secret",
-    "redirectUris" : [ "http://localhost:5267/swagger/oauth2-redirect.html" ],
+    "redirectUris" : [ "http://localhost:5004/swagger/oauth2-redirect.html" ],
     "webOrigins" : [ "+" ],
     "notBefore" : 0,
     "bearerOnly" : false,
@@ -1177,7 +1244,7 @@
     "frontchannelLogout" : true,
     "protocol" : "openid-connect",
     "attributes" : {
-      "post.logout.redirect.uris" : "http://localhost:5267/swagger/oauth2-logout.html",
+      "post.logout.redirect.uris" : "http://localhost:5004/swagger/oauth2-logout.html",
       "oauth2.device.authorization.grant.enabled" : "false",
       "backchannel.logout.revoke.offline.tokens" : "false",
       "use.refresh.tokens" : "true",
@@ -1249,14 +1316,14 @@
     "clientId" : "StockManagerApi",
     "name" : "StockManagerApi",
     "description" : "PizzaMea stock management",
-    "rootUrl" : "http://localhost:5265",
+    "rootUrl" : "http://localhost:5005",
     "adminUrl" : "",
-    "baseUrl" : "http://localhost:5265/swagger",
+    "baseUrl" : "http://localhost:5005/swagger",
     "surrogateAuthRequired" : false,
     "enabled" : true,
     "alwaysDisplayInConsole" : false,
     "clientAuthenticatorType" : "client-secret",
-    "redirectUris" : [ "http://localhost:5265/swagger/oauth2-redirect.html" ],
+    "redirectUris" : [ "http://localhost:5005/swagger/oauth2-redirect.html" ],
     "webOrigins" : [ "+" ],
     "notBefore" : 0,
     "bearerOnly" : false,
@@ -1269,7 +1336,7 @@
     "frontchannelLogout" : true,
     "protocol" : "openid-connect",
     "attributes" : {
-      "post.logout.redirect.uris" : "http://localhost:5265/swagger/oauth2-logout.html",
+      "post.logout.redirect.uris" : "http://localhost:5005/swagger/oauth2-logout.html",
       "oauth2.device.authorization.grant.enabled" : "false",
       "backchannel.logout.revoke.offline.tokens" : "false",
       "use.refresh.tokens" : "true",
@@ -1294,14 +1361,14 @@
     "clientId" : "StrategyManagerApi",
     "name" : "StrategyManagerApi",
     "description" : "PizzaMea strategy management",
-    "rootUrl" : "http://localhost:5285",
+    "rootUrl" : "http://localhost:5006",
     "adminUrl" : "",
-    "baseUrl" : "http://localhost:5285/swagger",
+    "baseUrl" : "http://localhost:5006/swagger",
     "surrogateAuthRequired" : false,
     "enabled" : true,
     "alwaysDisplayInConsole" : false,
     "clientAuthenticatorType" : "client-secret",
-    "redirectUris" : [ "http://localhost:5285/swagger/oauth2-redirect.html" ],
+    "redirectUris" : [ "http://localhost:5006/swagger/oauth2-redirect.html" ],
     "webOrigins" : [ "+" ],
     "notBefore" : 0,
     "bearerOnly" : false,
@@ -1314,7 +1381,7 @@
     "frontchannelLogout" : true,
     "protocol" : "openid-connect",
     "attributes" : {
-      "post.logout.redirect.uris" : "http://localhost:5285/swagger/oauth2-logout.html",
+      "post.logout.redirect.uris" : "http://localhost:5006/swagger/oauth2-logout.html",
       "oauth2.device.authorization.grant.enabled" : "false",
       "backchannel.logout.revoke.offline.tokens" : "false",
       "use.refresh.tokens" : "true",
@@ -2072,7 +2139,7 @@
       "subType" : "anonymous",
       "subComponents" : { },
       "config" : {
-        "allowed-protocol-mapper-types" : [ "saml-role-list-mapper", "oidc-full-name-mapper", "saml-user-property-mapper", "oidc-usermodel-attribute-mapper", "saml-user-attribute-mapper", "oidc-address-mapper", "oidc-sha256-pairwise-sub-mapper", "oidc-usermodel-property-mapper" ]
+        "allowed-protocol-mapper-types" : [ "oidc-sha256-pairwise-sub-mapper", "saml-user-attribute-mapper", "oidc-usermodel-property-mapper", "saml-user-property-mapper", "oidc-usermodel-attribute-mapper", "saml-role-list-mapper", "oidc-full-name-mapper", "oidc-address-mapper" ]
       }
     }, {
       "id" : "2384846d-7602-4548-a982-b7a7dcf93ea0",
@@ -2132,7 +2199,7 @@
       "subType" : "authenticated",
       "subComponents" : { },
       "config" : {
-        "allowed-protocol-mapper-types" : [ "oidc-full-name-mapper", "saml-user-attribute-mapper", "saml-role-list-mapper", "saml-user-property-mapper", "oidc-address-mapper", "oidc-usermodel-property-mapper", "oidc-usermodel-attribute-mapper", "oidc-sha256-pairwise-sub-mapper" ]
+        "allowed-protocol-mapper-types" : [ "oidc-sha256-pairwise-sub-mapper", "saml-user-attribute-mapper", "oidc-usermodel-attribute-mapper", "saml-user-property-mapper", "oidc-usermodel-property-mapper", "oidc-full-name-mapper", "saml-role-list-mapper", "oidc-address-mapper" ]
       }
     } ],
     "org.keycloak.keys.KeyProvider" : [ {
